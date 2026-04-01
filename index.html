@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Marketing Pulse — Curated events for marketing chapter professionals</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #09090b;
@@ -47,12 +47,34 @@ nav { position:sticky; top:0; z-index:100; background:rgba(9,9,11,0.85); backdro
 .nav-links a:hover, .nav-links a.active { color:var(--text); background:var(--surface); }
 .hero { position:relative; overflow:hidden; }
 .hero-inner { max-width:1200px; margin:0 auto; padding:100px 24px 60px; text-align:center; position:relative; z-index:1; }
-.hero-badge { display:inline-flex; align-items:center; gap:6px; background:var(--gradient-soft); border:1px solid rgba(99,102,241,0.2); color:var(--accent2); font-size:13px; font-weight:600; padding:6px 16px; border-radius:20px; margin-bottom:24px; }
-.hero-badge .dot { width:6px; height:6px; background:var(--accent2); border-radius:50%; animation:pulse-dot 2s infinite; }
-@keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.5)} }
-.hero h1 { font-size:clamp(40px,6vw,64px); font-weight:900; letter-spacing:-2px; line-height:1.05; margin-bottom:20px; }
-.hero h1 span { background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-.hero p.tagline { font-size:19px; color:var(--text-muted); max-width:560px; margin:0 auto 28px; line-height:1.6; }
+
+/* GREEN PULSING BADGE */
+.hero-badge {
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.3);
+  color:#4ade80; font-size:13px; font-weight:600;
+  padding:6px 16px; border-radius:20px; margin-bottom:28px;
+}
+.pulse-ring { position:relative; width:10px; height:10px; flex-shrink:0; }
+.pulse-ring::before {
+  content:''; position:absolute; inset:0; border-radius:50%;
+  background:#22c55e; animation:ping 1.5s cubic-bezier(0,0,0.2,1) infinite;
+}
+.pulse-ring::after {
+  content:''; position:absolute; inset:1.5px; border-radius:50%; background:#22c55e;
+}
+@keyframes ping { 75%,100% { transform:scale(2.5); opacity:0; } }
+
+/* HEADLINE */
+.hero h1 { font-size:clamp(38px,5.5vw,62px); font-weight:900; letter-spacing:-2px; line-height:1.05; margin-bottom:6px; }
+.hero h1 .gradient-text { background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.hero h1 .handwritten {
+  display:block; font-family:'Caveat', cursive; font-weight:700;
+  font-size:clamp(30px,4.5vw,52px); letter-spacing:0px; line-height:1.15;
+  background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  margin-top:4px;
+}
+.hero p.tagline { font-size:18px; color:var(--text-muted); max-width:580px; margin:18px auto 28px; line-height:1.6; }
 .hero .disclaimer { font-size:12px; color:var(--text-dim); margin-bottom:24px; font-style:italic; opacity:0.7; }
 .hero-ctas { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-bottom:48px; }
 .btn { padding:12px 28px; border-radius:var(--radius-sm); font-size:15px; font-weight:600; cursor:pointer; transition:all 0.2s; text-decoration:none; border:none; display:inline-flex; align-items:center; gap:8px; }
@@ -103,8 +125,10 @@ nav { position:sticky; top:0; z-index:100; background:rgba(9,9,11,0.85); backdro
 .card-meta { display:flex; gap:16px; font-size:13px; color:var(--text-dim); flex-wrap:wrap; }
 .card-meta span { display:flex; align-items:center; gap:4px; }
 .card-footer { display:flex; justify-content:space-between; align-items:center; margin-top:16px; padding-top:16px; border-top:1px solid var(--border); }
+.card-footer-left { display:flex; align-items:center; gap:6px; }
+.card-source-icon { font-size:13px; opacity:0.65; }
 .card-category { font-size:12px; color:var(--text-dim); font-weight:500; }
-.card-link { font-size:13px; font-weight:600; background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.card-link { font-size:13px; font-weight:600; background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; white-space:nowrap; }
 .about-section { max-width:1200px; margin:0 auto; padding:80px 24px; position:relative; }
 .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start; }
 .about-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:36px; position:relative; overflow:hidden; }
@@ -112,12 +136,32 @@ nav { position:sticky; top:0; z-index:100; background:rgba(9,9,11,0.85); backdro
 .about-card h2 { font-size:24px; font-weight:800; letter-spacing:-0.5px; margin-bottom:8px; }
 .about-card h2 span { background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
 .about-card > p { font-size:15px; color:var(--text-muted); margin-bottom:24px; line-height:1.7; }
+
+/* GUIDELINES — CSS counter, numbered squares */
+.guidelines-list { list-style:none; padding:0; counter-reset:g; }
+.guidelines-list li {
+  counter-increment:g; position:relative;
+  padding:10px 0 10px 40px; font-size:14px; color:var(--text-muted);
+  border-bottom:1px solid var(--border); line-height:1.6;
+}
+.guidelines-list li:last-child { border-bottom:none; }
+.guidelines-list li::before {
+  content:counter(g);
+  position:absolute; left:0; top:11px;
+  width:24px; height:24px; border-radius:6px;
+  background:var(--gradient-soft); border:1px solid rgba(99,102,241,0.2);
+  font-size:12px; font-weight:700; color:var(--accent2);
+  display:flex; align-items:center; justify-content:center;
+}
+.guidelines-list li strong { color:var(--text); }
+
+/* ABOUT bullet list */
 .about-card ul { list-style:none; padding:0; }
-.about-card ul li { position:relative; padding:10px 0 10px 28px; font-size:14px; color:var(--text-muted); border-bottom:1px solid var(--border); line-height:1.6; }
+.about-card ul li { position:relative; padding:10px 0 10px 20px; font-size:14px; color:var(--text-muted); border-bottom:1px solid var(--border); line-height:1.6; }
 .about-card ul li:last-child { border-bottom:none; }
-.about-card ul li::before { content:''; position:absolute; left:0; top:16px; width:8px; height:8px; border-radius:50%; background:var(--gradient); }
+.about-card ul li::before { content:''; position:absolute; left:0; top:18px; width:6px; height:6px; border-radius:50%; background:var(--gradient); }
 .about-card ul li strong { color:var(--text); }
-.guideline-num { display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:6px; background:var(--gradient-soft); border:1px solid rgba(99,102,241,0.2); font-size:12px; font-weight:700; color:var(--accent2); margin-right:8px; flex-shrink:0; }
+
 footer { border-top:1px solid var(--border); position:relative; overflow:hidden; }
 footer .glow-orb { opacity:0.08; }
 .footer-inner { max-width:1200px; margin:0 auto; padding:48px 24px; position:relative; z-index:1; }
@@ -127,6 +171,7 @@ footer .glow-orb { opacity:0.08; }
 .footer-col h4 { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--text-dim); margin-bottom:12px; }
 .footer-col a { display:block; font-size:14px; color:var(--text-muted); padding:3px 0; text-decoration:none; }
 .footer-col a:hover { color:var(--accent2); }
+.footer-col .coming-soon { font-size:13px; color:var(--text-dim); font-style:italic; }
 .footer-bottom { border-top:1px solid var(--border); padding-top:24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
 .footer-bottom p { font-size:12px; color:var(--text-dim); }
 .footer-bottom .built-with { background:var(--gradient-soft); border:1px solid rgba(99,102,241,0.15); padding:4px 12px; border-radius:20px; font-size:11px; color:var(--accent2); font-weight:500; }
@@ -135,7 +180,7 @@ footer .glow-orb { opacity:0.08; }
   .events-grid { grid-template-columns:1fr; }
   .about-grid { grid-template-columns:1fr; gap:24px; }
   .nav-links { display:none; }
-  .hero h1 { font-size:36px; }
+  .hero h1 { font-size:34px; }
   .footer-grid { flex-direction:column; }
 }
 html { scroll-behavior:smooth; }
@@ -163,10 +208,20 @@ html { scroll-behavior:smooth; }
   <div class="glow-orb glow-1"></div>
   <div class="glow-orb glow-2"></div>
   <div class="hero-inner">
-    <div class="hero-badge"><span class="dot"></span> Updated weekly</div>
-    <h1>Stay on the <span>Pulse</span></h1>
-    <p class="tagline">Curated events for marketing chapter professionals. Discover conferences, workshops, and summits across Europe to fuel your growth.</p>
-    <p class="disclaimer">An experimental tool developed with AI by Andrew Wheeler</p>
+
+    <div class="hero-badge">
+      <span class="pulse-ring"></span>
+      Updated weekly
+    </div>
+
+    <h1>
+      Stay on the <span class="gradient-text">Pulse</span>
+      <span class="handwritten">for Your Development</span>
+    </h1>
+
+    <p class="tagline">Curated events for marketing chapter professionals. Discover conferences, workshops, and meetups across Europe to support your development objectives.</p>
+    <p class="disclaimer">An experimental AI tool for the ELSP Marketing Chapter developed by Andrew Wheeler</p>
+
     <div class="hero-ctas">
       <a href="#events" class="btn btn-primary">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -177,6 +232,7 @@ html { scroll-behavior:smooth; }
         Submit Event
       </a>
     </div>
+
     <div class="stats">
       <div class="stat"><div class="stat-num" id="statEvents">—</div><div class="stat-label">Events</div></div>
       <div class="stat"><div class="stat-num" id="statCountries">18</div><div class="stat-label">Countries</div></div>
@@ -214,29 +270,31 @@ html { scroll-behavior:smooth; }
 
 <section class="about-section" id="about">
   <div class="about-grid">
+
     <div class="about-card" id="guidelines">
       <h2>Attendance <span>Guidelines</span></h2>
-      <p>To get the most from every event — and to give back to the chapter — we ask all attendees to follow these guidelines:</p>
-      <ul>
-        <li><span class="guideline-num">1</span> <strong>Share your notes.</strong> Post a summary or key takeaways in the chapter's shared channel within one week of attending.</li>
-        <li><span class="guideline-num">2</span> <strong>Capture actionable insights.</strong> Focus on what we can apply — frameworks, tools, strategies, or contacts relevant to our work.</li>
-        <li><span class="guideline-num">3</span> <strong>Present back to the chapter.</strong> For major conferences, prepare a short 10–15 minute lightning talk at the next chapter meetup.</li>
-        <li><span class="guideline-num">4</span> <strong>Connect and network.</strong> Actively engage with speakers and peers. Bring back at least one new connection or collaboration opportunity.</li>
-        <li><span class="guideline-num">5</span> <strong>Recommend or flag events.</strong> If you discover a great event not listed here, submit it so others can benefit too.</li>
-        <li><span class="guideline-num">6</span> <strong>Respect the budget.</strong> Prioritise events aligned with your development goals and discuss attendance with your line manager in advance.</li>
-      </ul>
+      <p>To get the most from every event and to support knowledge sharing in the marketing chapter we ask all attendees to follow these guidelines:</p>
+      <ol class="guidelines-list">
+        <li><strong>Share your notes.</strong> Post a summary or key takeaways in the chapter's shared channel within one week of attending.</li>
+        <li><strong>Capture actionable insights.</strong> Focus on what we can apply — frameworks, tools, strategies, or contacts relevant to our work.</li>
+        <li><strong>Present back to the chapter.</strong> For major conferences, prepare a short 10–15 minute lightning talk at the next chapter day.</li>
+        <li><strong>Connect and network.</strong> Actively engage with speakers and peers. Bring back at least one new connection or collaboration opportunity.</li>
+        <li><strong>Recommend or flag events.</strong> If you discover a great event not listed here, submit it so others can benefit too.</li>
+      </ol>
     </div>
+
     <div class="about-card">
       <h2>About <span>Marketing Pulse</span></h2>
-      <p>Marketing Pulse is a curated events hub for marketing chapter professionals. We aggregate conferences, workshops, summits, and virtual events across Europe — giving you one place to discover opportunities for professional growth.</p>
+      <p>Marketing Pulse is a curated events hub for marketing chapter members. We aggregate conferences, workshops and virtual events across a range of marketing topics to provide a springboard to discover opportunities for professional growth.</p>
       <ul>
         <li><strong>Weekly updates.</strong> Events are refreshed automatically every week through an AI-powered crawl of trusted sources.</li>
-        <li><strong>European focus.</strong> Primarily covering events in the UK, DACH, Nordics, Benelux, France, Iberia, and broader European markets.</li>
+        <li><strong>European focus.</strong> Primarily covering events in the UK, DACH, Nordics, Benelux, France, Iberia, and broader European markets. US, Canada, Brazil and more global events will be added in the future.</li>
         <li><strong>Development-first.</strong> We prioritise events that offer genuine learning — not just expos or trade shows.</li>
         <li><strong>Community-driven.</strong> Anyone in the chapter can submit an event they've found valuable or plan to attend.</li>
         <li><strong>Open and transparent.</strong> This is an experimental tool, continuously improved based on chapter feedback.</li>
       </ul>
     </div>
+
   </div>
 </section>
 
@@ -251,7 +309,7 @@ html { scroll-behavior:smooth; }
           </div>
           Marketing Pulse
         </div>
-        <p>Curated events for marketing chapter professionals. Stay on the pulse of what matters.</p>
+        <p>Curated events for marketing chapter members. Stay on the pulse of your development.</p>
       </div>
       <div class="footer-col">
         <h4>Navigation</h4>
@@ -262,13 +320,11 @@ html { scroll-behavior:smooth; }
       </div>
       <div class="footer-col">
         <h4>Resources</h4>
-        <a href="#">Marketing Chapter Hub</a>
-        <a href="#">Learning Pathways</a>
-        <a href="#">Chapter Slack</a>
+        <p class="coming-soon">Coming Soon!</p>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2026 Marketing Pulse. An experimental tool developed with AI by Andrew Wheeler.</p>
+      <p>&copy; 2026 Marketing Pulse. An experimental AI tool for the ELSP Marketing Chapter developed by Andrew Wheeler.</p>
       <span class="built-with">⚡ Powered by AI</span>
     </div>
   </div>
@@ -276,13 +332,36 @@ html { scroll-behavior:smooth; }
 
 <script>
 // ── Set your MS Form URL here when ready ───────────────────────────────────
-const MS_FORM_URL = ''; // paste your Microsoft Forms URL here
+const MS_FORM_URL = '';
 
-// ── State ──────────────────────────────────────────────────────────────────
+// ── Source icon mapping ────────────────────────────────────────────────────
+const SOURCE_ICONS = {
+  'eventbrite': '🎟️',
+  'meetup':     '👥',
+  'hubspot':    '🟠',
+  'semrush':    '🔍',
+  'salesforce': '☁️',
+  'adobe':      '🅰️',
+  'linkedin':   '💼',
+  'google':     '🔵',
+  'microsoft':  '🪟',
+  'aws':        '☁️',
+  'snowflake':  '❄️',
+  'n8n':        '⚙️',
+};
+
+function getSourceIcon(source) {
+  if (!source) return '';
+  const s = source.toLowerCase();
+  for (const [key, icon] of Object.entries(SOURCE_ICONS)) {
+    if (s.includes(key)) return `<span class="card-source-icon" title="${source}">${icon}</span>`;
+  }
+  return '';
+}
+
 let allEvents    = [];
 let activeFormat = 'all';
 
-// ── Wire submit buttons ────────────────────────────────────────────────────
 function setupSubmitLinks() {
   const btn  = document.getElementById('submitBtn');
   const foot = document.getElementById('footerSubmit');
@@ -293,31 +372,26 @@ function setupSubmitLinks() {
   }
 }
 
-// ── Load from data/events.json ─────────────────────────────────────────────
 async function loadEvents() {
   try {
     const res  = await fetch('data/events.json');
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
-
-    allEvents = data.events || [];
+    allEvents  = data.events || [];
     document.getElementById('statEvents').textContent = data.total_events || allEvents.length;
-
     if (data.last_updated) {
       const d = new Date(data.last_updated);
       document.getElementById('lastUpdated').textContent =
         'Last updated ' + d.toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
     }
-
     filterEvents();
   } catch (err) {
     document.getElementById('eventsGrid').innerHTML =
-      '<div class="loading-state"><p>No events loaded yet — the pipeline hasn\'t run. Check back soon.</p></div>';
+      '<div class="loading-state"><p>No events loaded yet — check back soon.</p></div>';
     document.getElementById('statEvents').textContent = '0';
   }
 }
 
-// ── Date helpers ───────────────────────────────────────────────────────────
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 function getMonth(s) { const d = new Date(s); return isNaN(d) ? '?' : MONTHS[d.getUTCMonth()]; }
 function getDay(s)   { const d = new Date(s); return isNaN(d) ? '?' : d.getUTCDate(); }
@@ -326,18 +400,19 @@ function dateRange(s, e) {
   if (isNaN(sd)) return '';
   if (isNaN(ed) || s === e) return `${MONTHS[sd.getUTCMonth()]} ${sd.getUTCDate()}`;
   const sm = MONTHS[sd.getUTCMonth()], em = MONTHS[ed.getUTCMonth()];
-  return sm === em
-    ? `${sm} ${sd.getUTCDate()}–${ed.getUTCDate()}`
-    : `${sm} ${sd.getUTCDate()} – ${em} ${ed.getUTCDate()}`;
+  return sm === em ? `${sm} ${sd.getUTCDate()}–${ed.getUTCDate()}` : `${sm} ${sd.getUTCDate()} – ${em} ${ed.getUTCDate()}`;
 }
 
-// ── Render one card ────────────────────────────────────────────────────────
 function card(e) {
-  const safeUrl = e.url && e.url !== '#' ? e.url.replace(/'/g, "\\'") : null;
+  const safeUrl    = e.url && e.url !== '#' ? e.url.replace(/'/g, "\\'") : null;
+  const sourceIcon = getSourceIcon(e.source || '');
   return `
   <div class="card" ${safeUrl ? `onclick="window.open('${safeUrl}','_blank')"` : ''}>
     <div class="card-top">
-      <div class="card-date"><span class="month">${getMonth(e.date_start)}</span><span class="day">${getDay(e.date_start)}</span></div>
+      <div class="card-date">
+        <span class="month">${getMonth(e.date_start)}</span>
+        <span class="day">${getDay(e.date_start)}</span>
+      </div>
       <div class="card-badges">
         <span class="badge badge-${e.format==='In-Person'?'person':'virtual'}">${e.format}</span>
         <span class="badge badge-${e.cost==='Free'?'free':'paid'}">${e.cost}</span>
@@ -350,18 +425,17 @@ function card(e) {
       <span>📅 ${dateRange(e.date_start, e.date_end)}</span>
     </div>
     <div class="card-footer">
-      <span class="card-category">${e.category}</span>
+      <div class="card-footer-left">${sourceIcon}<span class="card-category">${e.category}</span></div>
       ${safeUrl ? '<span class="card-link">Learn more →</span>' : ''}
     </div>
   </div>`;
 }
 
-// ── Filter + render ────────────────────────────────────────────────────────
 function filterEvents() {
   const q = document.getElementById('searchInput').value.toLowerCase();
   const filtered = allEvents
     .filter(e => {
-      const fmtOk = activeFormat === 'all' || e.format === activeFormat;
+      const fmtOk  = activeFormat === 'all' || e.format === activeFormat;
       const srchOk = !q || [e.title, e.description, e.location, e.category]
         .some(f => (f||'').toLowerCase().includes(q));
       return fmtOk && srchOk;
@@ -380,7 +454,6 @@ function setFormat(btn, fmt) {
   filterEvents();
 }
 
-// ── Init ───────────────────────────────────────────────────────────────────
 setupSubmitLinks();
 loadEvents();
 </script>
