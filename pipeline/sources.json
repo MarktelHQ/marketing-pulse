@@ -1,0 +1,38 @@
+{
+  "layers": {
+    "layer_1_primary": [
+      { "name": "online.marketing - Europe",          "url": "https://online.marketing/europe/" },
+      { "name": "online.marketing - Digital Marketing","url": "https://online.marketing/digital-marketing/" },
+      { "name": "online.marketing - Germany",         "url": "https://online.marketing/de/" }
+    ],
+    "layer_2_aggregators": [
+      { "name": "IAB Europe Events",         "url": "https://iabeurope.eu/events/" },
+      { "name": "Digital Agency Network EU", "url": "https://digitalagencynetwork.com/events/europe/" },
+      { "name": "Marketing Week Events",     "url": "https://www.marketingweek.com/events/" },
+      { "name": "The Drum Events",           "url": "https://www.thedrum.com/events" },
+      { "name": "Markletic",                 "url": "https://www.markletic.com/" },
+      { "name": "B2B Marketing Events",      "url": "https://www.b2bmarketing.net/en-gb/events" },
+      { "name": "DMWF Europe",               "url": "https://digitalmarketing-conference.com/europe/" }
+    ],
+    "layer_3_vendors": [
+      { "name": "Salesforce Events",         "url": "https://www.salesforce.com/events/" },
+      { "name": "Adobe Events",              "url": "https://business.adobe.com/events/" },
+      { "name": "Google Marketing Events",   "url": "https://marketingplatform.google.com/about/resources/" },
+      { "name": "AWS Events",                "url": "https://aws.amazon.com/events/" },
+      { "name": "Microsoft Events",          "url": "https://events.microsoft.com/" },
+      { "name": "LinkedIn Marketing Events", "url": "https://business.linkedin.com/marketing-solutions/events" },
+      { "name": "Snowflake Events",          "url": "https://www.snowflake.com/events/" },
+      { "name": "HubSpot INBOUND",           "url": "https://www.inbound.com/" },
+      { "name": "SEMrush Events",            "url": "https://www.semrush.com/company/events/" },
+      { "name": "n8n Events",                "url": "https://n8n.io/events/" }
+    ],
+    "layer_4_local": [
+      { "name": "Eventbrite UK - Marketing",  "url": "https://www.eventbrite.co.uk/d/united-kingdom/marketing/" },
+      { "name": "Eventbrite DE - Marketing",  "url": "https://www.eventbrite.de/d/germany/marketing/" },
+      { "name": "Eventbrite IT - Marketing",  "url": "https://www.eventbrite.it/d/italy/marketing/" },
+      { "name": "Meetup - Marketing London",  "url": "https://www.meetup.com/find/?keywords=marketing&location=London" },
+      { "name": "Meetup - Marketing Berlin",  "url": "https://www.meetup.com/find/?keywords=marketing&location=Berlin" },
+      { "name": "Meetup - Marketing Milan",   "url": "https://www.meetup.com/find/?keywords=marketing&location=Milan" }
+    ]
+  }
+}

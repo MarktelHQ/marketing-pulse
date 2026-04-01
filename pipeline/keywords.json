@@ -1,0 +1,55 @@
+{
+  "relevance_threshold": 7,
+  "max_events": 100,
+
+  "geography_include": [
+    "United Kingdom", "Germany", "Netherlands", "France", "Spain", "Italy",
+    "Sweden", "Denmark", "Norway", "Finland", "Belgium", "Portugal",
+    "Switzerland", "Austria", "Ireland", "Poland", "Czech Republic", "Virtual"
+  ],
+
+  "tier_1_must_include": [
+    "marketing", "digital marketing", "content marketing", "brand strategy",
+    "B2B marketing", "demand generation", "ABM", "account-based marketing",
+    "SEO", "PPC", "paid media", "marketing strategy", "CMO",
+    "marketing leadership", "MarTech", "CRM", "customer experience",
+    "growth marketing", "performance marketing", "inbound marketing",
+    "marketing analytics", "marketing operations"
+  ],
+
+  "tier_2_include_if_adjacent": [
+    "AI marketing", "generative AI", "data analytics", "CDP",
+    "personalisation", "personalization", "marketing automation",
+    "sales enablement", "ecommerce", "e-commerce", "social media",
+    "influencer marketing", "creativity", "advertising", "product marketing",
+    "go-to-market", "GTM", "email marketing", "automation",
+    "n8n", "Salesforce", "Adobe", "HubSpot", "Snowflake", "LinkedIn ads",
+    "customer data", "audience targeting", "programmatic"
+  ],
+
+  "tier_3_exclude": [
+    "developer conference", "DevOps", "kubernetes", "infrastructure",
+    "HR conference", "recruitment", "talent acquisition", "finance conference",
+    "logistics", "supply chain", "medical", "healthcare", "legal",
+    "real estate", "construction", "manufacturing", "deep tech",
+    "blockchain", "cryptocurrency", "NFT", "gaming only"
+  ],
+
+  "categories": [
+    "Digital Marketing",
+    "B2B Marketing",
+    "Content Marketing",
+    "Marketing Technology",
+    "Brand Strategy",
+    "Creativity",
+    "Marketing Innovation",
+    "Inbound Marketing",
+    "Performance Marketing",
+    "Marketing Analytics",
+    "Social Media",
+    "Email Marketing",
+    "Ecommerce",
+    "AI Marketing",
+    "Technology"
+  ]
+}
