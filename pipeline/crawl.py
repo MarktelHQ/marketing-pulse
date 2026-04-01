@@ -92,7 +92,7 @@ def crawl_url(url: str, name: str):
     log.info(f"  Crawling: {name}")
     try:
         result  = firecrawl.scrape(url, formats=["markdown"])
-        content = result.get("markdown", "")
+content = result.markdown or ""
         if not content:
             log.warning(f"  Empty response for {name}")
             return None
