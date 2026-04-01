@@ -91,7 +91,7 @@ REQUIRED_FIELDS = {"title", "date_start", "date_end", "location", "format",
 def crawl_url(url: str, name: str):
     log.info(f"  Crawling: {name}")
     try:
-        result  = firecrawl.scrape_url(url, params={"formats": ["markdown"]})
+        result  = firecrawl.scrape(url, formats=["markdown"])
         content = result.get("markdown", "")
         if not content:
             log.warning(f"  Empty response for {name}")
@@ -214,7 +214,7 @@ def run() -> None:
         all_events.extend(valid)
         time.sleep(CRAWL_DELAY)
 
-    log.info("\n" + "─" * 60)
+    log.info("\n" + "-" * 60)
     log.info(f"Raw collected:     {len(all_events)}")
 
     unique = deduplicate(all_events)
