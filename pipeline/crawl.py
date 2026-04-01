@@ -91,8 +91,8 @@ REQUIRED_FIELDS = {"title", "date_start", "date_end", "location", "format",
 def crawl_url(url: str, name: str):
     log.info(f"  Crawling: {name}")
     try:
-        result  = firecrawl.scrape(url, formats=["markdown"])
-content = result.markdown or ""
+        result = firecrawl.scrape(url, formats=["markdown"])
+        content = result.markdown or ""
         if not content:
             log.warning(f"  Empty response for {name}")
             return None
