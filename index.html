@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketing Pulse — Curated events for marketing chapter professionals</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #09090b;
+  --surface: #18181b;
+  --surface-hover: #27272a;
+  --border: #27272a;
+  --text: #fafafa;
+  --text-muted: #a1a1aa;
+  --text-dim: #71717a;
+  --accent: #6366f1;
+  --accent2: #a78bfa;
+  --accent3: #c084fc;
+  --gradient: linear-gradient(135deg, #6366f1, #a78bfa, #c084fc);
+  --gradient-soft: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(167,139,250,0.15), rgba(192,132,252,0.15));
+  --accent-soft: rgba(99,102,241,0.12);
+  --green: #22c55e;
+  --green-soft: rgba(34,197,94,0.12);
+  --rose: #f43f5e;
+  --rose-soft: rgba(244,63,94,0.12);
+  --blue: #3b82f6;
+  --blue-soft: rgba(59,130,246,0.12);
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter',system-ui,-apple-system,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased; }
+a { color:var(--accent2); text-decoration:none; }
+a:hover { text-decoration:underline; }
+.glow-orb { position:absolute; border-radius:50%; filter:blur(120px); opacity:0.15; pointer-events:none; z-index:0; }
+.glow-1 { width:600px; height:600px; background:#6366f1; top:-200px; left:-100px; }
+.glow-2 { width:500px; height:500px; background:#c084fc; top:-100px; right:-150px; }
+.glow-3 { width:400px; height:400px; background:#a78bfa; bottom:-200px; left:50%; transform:translateX(-50%); }
+nav { position:sticky; top:0; z-index:100; background:rgba(9,9,11,0.85); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); }
+.nav-inner { max-width:1200px; margin:0 auto; padding:0 24px; height:64px; display:flex; align-items:center; justify-content:space-between; }
+.logo { display:flex; align-items:center; gap:10px; font-size:18px; font-weight:700; letter-spacing:-0.3px; }
+.logo-icon { width:32px; height:32px; background:var(--gradient); border-radius:8px; display:flex; align-items:center; justify-content:center; }
+.logo-icon svg { width:18px; height:18px; }
+.nav-links { display:flex; gap:4px; }
+.nav-links a { color:var(--text-muted); font-size:14px; font-weight:500; padding:6px 14px; border-radius:6px; transition:all 0.15s; text-decoration:none; }
+.nav-links a:hover, .nav-links a.active { color:var(--text); background:var(--surface); }
+.hero { position:relative; overflow:hidden; }
+.hero-inner { max-width:1200px; margin:0 auto; padding:100px 24px 60px; text-align:center; position:relative; z-index:1; }
+.hero-badge { display:inline-flex; align-items:center; gap:6px; background:var(--gradient-soft); border:1px solid rgba(99,102,241,0.2); color:var(--accent2); font-size:13px; font-weight:600; padding:6px 16px; border-radius:20px; margin-bottom:24px; }
+.hero-badge .dot { width:6px; height:6px; background:var(--accent2); border-radius:50%; animation:pulse-dot 2s infinite; }
+@keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.5)} }
+.hero h1 { font-size:clamp(40px,6vw,64px); font-weight:900; letter-spacing:-2px; line-height:1.05; margin-bottom:20px; }
+.hero h1 span { background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.hero p.tagline { font-size:19px; color:var(--text-muted); max-width:560px; margin:0 auto 28px; line-height:1.6; }
+.hero .disclaimer { font-size:12px; color:var(--text-dim); margin-bottom:24px; font-style:italic; opacity:0.7; }
+.hero-ctas { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-bottom:48px; }
+.btn { padding:12px 28px; border-radius:var(--radius-sm); font-size:15px; font-weight:600; cursor:pointer; transition:all 0.2s; text-decoration:none; border:none; display:inline-flex; align-items:center; gap:8px; }
+.btn-primary { background:var(--gradient); color:white; box-shadow:0 0 24px rgba(99,102,241,0.3); }
+.btn-primary:hover { box-shadow:0 0 40px rgba(99,102,241,0.5); transform:translateY(-1px); text-decoration:none; }
+.btn-secondary { background:transparent; border:1px solid var(--border); color:var(--text-muted); }
+.btn-secondary:hover { border-color:var(--accent); color:var(--text); background:var(--accent-soft); text-decoration:none; }
+.btn-secondary.disabled { opacity:0.4; pointer-events:none; cursor:default; }
+.stats { display:flex; justify-content:center; gap:48px; }
+.stat { text-align:center; }
+.stat-num { font-size:32px; font-weight:800; background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.stat-label { font-size:13px; color:var(--text-dim); margin-top:2px; }
+.last-updated { text-align:center; font-size:12px; color:var(--text-dim); margin-top:14px; min-height:18px; }
+.gradient-divider { height:1px; background:var(--gradient); opacity:0.2; max-width:1200px; margin:0 auto; }
+.filters-section { max-width:1200px; margin:0 auto; padding:40px 24px 20px; }
+.section-label { font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:var(--accent2); margin-bottom:16px; }
+.filters-bar { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+.search-box { flex:1; min-width:220px; position:relative; }
+.search-box input { width:100%; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-sm); padding:10px 14px 10px 40px; color:var(--text); font-size:14px; outline:none; transition:border-color 0.15s; }
+.search-box input::placeholder { color:var(--text-dim); }
+.search-box input:focus { border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft); }
+.search-box svg { position:absolute; left:12px; top:50%; transform:translateY(-50%); color:var(--text-dim); }
+.filter-btn { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-sm); padding:10px 16px; color:var(--text-muted); font-size:14px; font-weight:500; cursor:pointer; transition:all 0.15s; display:flex; align-items:center; gap:6px; }
+.filter-btn:hover { border-color:var(--accent); color:var(--text); }
+.filter-btn.active { border-color:var(--accent); color:var(--text); background:var(--gradient-soft); }
+.events-section { max-width:1200px; margin:0 auto; padding:10px 24px 80px; }
+.events-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:16px; }
+.loading-state { grid-column:1/-1; text-align:center; padding:80px 0; }
+.loading-spinner { width:36px; height:36px; border:3px solid var(--border); border-top-color:var(--accent); border-radius:50%; animation:spin 0.8s linear infinite; margin:0 auto 16px; }
+@keyframes spin { to { transform:rotate(360deg); } }
+.loading-state p { color:var(--text-dim); font-size:14px; }
+.card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:24px; transition:all 0.25s; cursor:pointer; display:flex; flex-direction:column; position:relative; overflow:hidden; }
+.card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--gradient); opacity:0; transition:opacity 0.25s; }
+.card:hover { border-color:#3f3f46; transform:translateY(-3px); box-shadow:0 12px 40px rgba(0,0,0,0.4), 0 0 20px rgba(99,102,241,0.08); }
+.card:hover::before { opacity:1; }
+.card-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px; }
+.card-date { display:flex; flex-direction:column; align-items:center; background:var(--gradient-soft); border:1px solid rgba(99,102,241,0.15); border-radius:var(--radius-sm); padding:8px 12px; min-width:52px; }
+.card-date .month { font-size:11px; font-weight:700; color:var(--accent2); text-transform:uppercase; letter-spacing:0.5px; }
+.card-date .day { font-size:22px; font-weight:800; color:var(--text); line-height:1; }
+.card-badges { display:flex; gap:6px; flex-wrap:wrap; }
+.badge { font-size:11px; font-weight:600; padding:4px 10px; border-radius:20px; text-transform:uppercase; letter-spacing:0.3px; }
+.badge-virtual { background:var(--green-soft); color:var(--green); }
+.badge-person { background:var(--blue-soft); color:var(--blue); }
+.badge-free { background:var(--green-soft); color:var(--green); }
+.badge-paid { background:var(--rose-soft); color:var(--rose); }
+.card h3 { font-size:17px; font-weight:700; letter-spacing:-0.3px; margin-bottom:8px; line-height:1.3; }
+.card-desc { font-size:14px; color:var(--text-muted); margin-bottom:16px; flex:1; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+.card-meta { display:flex; gap:16px; font-size:13px; color:var(--text-dim); flex-wrap:wrap; }
+.card-meta span { display:flex; align-items:center; gap:4px; }
+.card-footer { display:flex; justify-content:space-between; align-items:center; margin-top:16px; padding-top:16px; border-top:1px solid var(--border); }
+.card-category { font-size:12px; color:var(--text-dim); font-weight:500; }
+.card-link { font-size:13px; font-weight:600; background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.about-section { max-width:1200px; margin:0 auto; padding:80px 24px; position:relative; }
+.about-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start; }
+.about-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:36px; position:relative; overflow:hidden; }
+.about-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--gradient); }
+.about-card h2 { font-size:24px; font-weight:800; letter-spacing:-0.5px; margin-bottom:8px; }
+.about-card h2 span { background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.about-card > p { font-size:15px; color:var(--text-muted); margin-bottom:24px; line-height:1.7; }
+.about-card ul { list-style:none; padding:0; }
+.about-card ul li { position:relative; padding:10px 0 10px 28px; font-size:14px; color:var(--text-muted); border-bottom:1px solid var(--border); line-height:1.6; }
+.about-card ul li:last-child { border-bottom:none; }
+.about-card ul li::before { content:''; position:absolute; left:0; top:16px; width:8px; height:8px; border-radius:50%; background:var(--gradient); }
+.about-card ul li strong { color:var(--text); }
+.guideline-num { display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:6px; background:var(--gradient-soft); border:1px solid rgba(99,102,241,0.2); font-size:12px; font-weight:700; color:var(--accent2); margin-right:8px; flex-shrink:0; }
+footer { border-top:1px solid var(--border); position:relative; overflow:hidden; }
+footer .glow-orb { opacity:0.08; }
+.footer-inner { max-width:1200px; margin:0 auto; padding:48px 24px; position:relative; z-index:1; }
+.footer-grid { display:flex; justify-content:space-between; align-items:start; flex-wrap:wrap; gap:32px; margin-bottom:32px; }
+.footer-brand .logo { margin-bottom:12px; }
+.footer-brand p { font-size:13px; color:var(--text-dim); max-width:280px; }
+.footer-col h4 { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--text-dim); margin-bottom:12px; }
+.footer-col a { display:block; font-size:14px; color:var(--text-muted); padding:3px 0; text-decoration:none; }
+.footer-col a:hover { color:var(--accent2); }
+.footer-bottom { border-top:1px solid var(--border); padding-top:24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+.footer-bottom p { font-size:12px; color:var(--text-dim); }
+.footer-bottom .built-with { background:var(--gradient-soft); border:1px solid rgba(99,102,241,0.15); padding:4px 12px; border-radius:20px; font-size:11px; color:var(--accent2); font-weight:500; }
+@media(max-width:768px) {
+  .stats { gap:24px; }
+  .events-grid { grid-template-columns:1fr; }
+  .about-grid { grid-template-columns:1fr; gap:24px; }
+  .nav-links { display:none; }
+  .hero h1 { font-size:36px; }
+  .footer-grid { flex-direction:column; }
+}
+html { scroll-behavior:smooth; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      Marketing Pulse
+    </div>
+    <div class="nav-links">
+      <a href="#events" class="active">Events</a>
+      <a href="#about">About</a>
+      <a href="#guidelines">Guidelines</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="glow-orb glow-1"></div>
+  <div class="glow-orb glow-2"></div>
+  <div class="hero-inner">
+    <div class="hero-badge"><span class="dot"></span> Updated weekly</div>
+    <h1>Stay on the <span>Pulse</span></h1>
+    <p class="tagline">Curated events for marketing chapter professionals. Discover conferences, workshops, and summits across Europe to fuel your growth.</p>
+    <p class="disclaimer">An experimental tool developed with AI by Andrew Wheeler</p>
+    <div class="hero-ctas">
+      <a href="#events" class="btn btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        View Events
+      </a>
+      <a id="submitBtn" href="#" class="btn btn-secondary disabled" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Submit Event
+      </a>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="stat-num" id="statEvents">—</div><div class="stat-label">Events</div></div>
+      <div class="stat"><div class="stat-num" id="statCountries">18</div><div class="stat-label">Countries</div></div>
+      <div class="stat"><div class="stat-num" id="statCategories">15</div><div class="stat-label">Categories</div></div>
+    </div>
+    <div class="last-updated" id="lastUpdated"></div>
+  </div>
+</section>
+
+<div class="gradient-divider"></div>
+
+<section class="filters-section" id="events">
+  <div class="section-label">📅 Upcoming Events</div>
+  <div class="filters-bar">
+    <div class="search-box">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" placeholder="Search events, locations, categories..." id="searchInput" oninput="filterEvents()">
+    </div>
+    <button class="filter-btn active" onclick="setFormat(this,'all')">All</button>
+    <button class="filter-btn" onclick="setFormat(this,'In-Person')">📍 In-Person</button>
+    <button class="filter-btn" onclick="setFormat(this,'Virtual')">💻 Virtual</button>
+  </div>
+</section>
+
+<section class="events-section">
+  <div class="events-grid" id="eventsGrid">
+    <div class="loading-state">
+      <div class="loading-spinner"></div>
+      <p>Loading events…</p>
+    </div>
+  </div>
+</section>
+
+<div class="gradient-divider"></div>
+
+<section class="about-section" id="about">
+  <div class="about-grid">
+    <div class="about-card" id="guidelines">
+      <h2>Attendance <span>Guidelines</span></h2>
+      <p>To get the most from every event — and to give back to the chapter — we ask all attendees to follow these guidelines:</p>
+      <ul>
+        <li><span class="guideline-num">1</span> <strong>Share your notes.</strong> Post a summary or key takeaways in the chapter's shared channel within one week of attending.</li>
+        <li><span class="guideline-num">2</span> <strong>Capture actionable insights.</strong> Focus on what we can apply — frameworks, tools, strategies, or contacts relevant to our work.</li>
+        <li><span class="guideline-num">3</span> <strong>Present back to the chapter.</strong> For major conferences, prepare a short 10–15 minute lightning talk at the next chapter meetup.</li>
+        <li><span class="guideline-num">4</span> <strong>Connect and network.</strong> Actively engage with speakers and peers. Bring back at least one new connection or collaboration opportunity.</li>
+        <li><span class="guideline-num">5</span> <strong>Recommend or flag events.</strong> If you discover a great event not listed here, submit it so others can benefit too.</li>
+        <li><span class="guideline-num">6</span> <strong>Respect the budget.</strong> Prioritise events aligned with your development goals and discuss attendance with your line manager in advance.</li>
+      </ul>
+    </div>
+    <div class="about-card">
+      <h2>About <span>Marketing Pulse</span></h2>
+      <p>Marketing Pulse is a curated events hub for marketing chapter professionals. We aggregate conferences, workshops, summits, and virtual events across Europe — giving you one place to discover opportunities for professional growth.</p>
+      <ul>
+        <li><strong>Weekly updates.</strong> Events are refreshed automatically every week through an AI-powered crawl of trusted sources.</li>
+        <li><strong>European focus.</strong> Primarily covering events in the UK, DACH, Nordics, Benelux, France, Iberia, and broader European markets.</li>
+        <li><strong>Development-first.</strong> We prioritise events that offer genuine learning — not just expos or trade shows.</li>
+        <li><strong>Community-driven.</strong> Anyone in the chapter can submit an event they've found valuable or plan to attend.</li>
+        <li><strong>Open and transparent.</strong> This is an experimental tool, continuously improved based on chapter feedback.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="glow-orb glow-3"></div>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          Marketing Pulse
+        </div>
+        <p>Curated events for marketing chapter professionals. Stay on the pulse of what matters.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <a href="#events">Events</a>
+        <a href="#about">About</a>
+        <a href="#guidelines">Guidelines</a>
+        <a id="footerSubmit" href="#">Submit Event</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="#">Marketing Chapter Hub</a>
+        <a href="#">Learning Pathways</a>
+        <a href="#">Chapter Slack</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Marketing Pulse. An experimental tool developed with AI by Andrew Wheeler.</p>
+      <span class="built-with">⚡ Powered by AI</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Set your MS Form URL here when ready ───────────────────────────────────
+const MS_FORM_URL = ''; // paste your Microsoft Forms URL here
+
+// ── State ──────────────────────────────────────────────────────────────────
+let allEvents    = [];
+let activeFormat = 'all';
+
+// ── Wire submit buttons ────────────────────────────────────────────────────
+function setupSubmitLinks() {
+  const btn  = document.getElementById('submitBtn');
+  const foot = document.getElementById('footerSubmit');
+  if (MS_FORM_URL) {
+    btn.href = MS_FORM_URL;
+    btn.classList.remove('disabled');
+    foot.href = MS_FORM_URL;
+  }
+}
+
+// ── Load from data/events.json ─────────────────────────────────────────────
+async function loadEvents() {
+  try {
+    const res  = await fetch('data/events.json');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+
+    allEvents = data.events || [];
+    document.getElementById('statEvents').textContent = data.total_events || allEvents.length;
+
+    if (data.last_updated) {
+      const d = new Date(data.last_updated);
+      document.getElementById('lastUpdated').textContent =
+        'Last updated ' + d.toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
+    }
+
+    filterEvents();
+  } catch (err) {
+    document.getElementById('eventsGrid').innerHTML =
+      '<div class="loading-state"><p>No events loaded yet — the pipeline hasn\'t run. Check back soon.</p></div>';
+    document.getElementById('statEvents').textContent = '0';
+  }
+}
+
+// ── Date helpers ───────────────────────────────────────────────────────────
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function getMonth(s) { const d = new Date(s); return isNaN(d) ? '?' : MONTHS[d.getUTCMonth()]; }
+function getDay(s)   { const d = new Date(s); return isNaN(d) ? '?' : d.getUTCDate(); }
+function dateRange(s, e) {
+  const sd = new Date(s), ed = new Date(e);
+  if (isNaN(sd)) return '';
+  if (isNaN(ed) || s === e) return `${MONTHS[sd.getUTCMonth()]} ${sd.getUTCDate()}`;
+  const sm = MONTHS[sd.getUTCMonth()], em = MONTHS[ed.getUTCMonth()];
+  return sm === em
+    ? `${sm} ${sd.getUTCDate()}–${ed.getUTCDate()}`
+    : `${sm} ${sd.getUTCDate()} – ${em} ${ed.getUTCDate()}`;
+}
+
+// ── Render one card ────────────────────────────────────────────────────────
+function card(e) {
+  const safeUrl = e.url && e.url !== '#' ? e.url.replace(/'/g, "\\'") : null;
+  return `
+  <div class="card" ${safeUrl ? `onclick="window.open('${safeUrl}','_blank')"` : ''}>
+    <div class="card-top">
+      <div class="card-date"><span class="month">${getMonth(e.date_start)}</span><span class="day">${getDay(e.date_start)}</span></div>
+      <div class="card-badges">
+        <span class="badge badge-${e.format==='In-Person'?'person':'virtual'}">${e.format}</span>
+        <span class="badge badge-${e.cost==='Free'?'free':'paid'}">${e.cost}</span>
+      </div>
+    </div>
+    <h3>${e.title}</h3>
+    <p class="card-desc">${e.description}</p>
+    <div class="card-meta">
+      <span>📍 ${e.location}</span>
+      <span>📅 ${dateRange(e.date_start, e.date_end)}</span>
+    </div>
+    <div class="card-footer">
+      <span class="card-category">${e.category}</span>
+      ${safeUrl ? '<span class="card-link">Learn more →</span>' : ''}
+    </div>
+  </div>`;
+}
+
+// ── Filter + render ────────────────────────────────────────────────────────
+function filterEvents() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  const filtered = allEvents
+    .filter(e => {
+      const fmtOk = activeFormat === 'all' || e.format === activeFormat;
+      const srchOk = !q || [e.title, e.description, e.location, e.category]
+        .some(f => (f||'').toLowerCase().includes(q));
+      return fmtOk && srchOk;
+    })
+    .sort((a,b) => (a.date_start||'').localeCompare(b.date_start||''));
+
+  document.getElementById('eventsGrid').innerHTML = filtered.length
+    ? filtered.map(card).join('')
+    : '<p style="color:var(--text-dim);grid-column:1/-1;text-align:center;padding:60px 0;">No events match your filters.</p>';
+}
+
+function setFormat(btn, fmt) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeFormat = fmt;
+  filterEvents();
+}
+
+// ── Init ───────────────────────────────────────────────────────────────────
+setupSubmitLinks();
+loadEvents();
+</script>
+</body>
+</html>
